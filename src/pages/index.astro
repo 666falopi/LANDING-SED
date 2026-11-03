@@ -1,12 +1,196 @@
 ---
+const specs = [
+  ['01', 'Concepto', 'De la idea al sistema'],
+  ['02', 'Diseño', 'Forma y función'],
+  ['03', 'Desarrollo', 'Precisión en cada detalle'],
+  ['04', 'Integración', 'Todo conectado'],
+  ['05', 'Producción', 'Pensado para avanzar'],
+  ['06', 'Evolución', 'Mejora continua'],
+];
 ---
 <!doctype html>
 <html lang="es">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>SED</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="SED. Diseño, tecnología y una nueva perspectiva industrial." />
+    <title>SED — Una nueva perspectiva industrial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   </head>
-  <body></body>
+  <body>
+    <a class="skip" href="#contenido">Saltar al contenido</a>
+    <div class="sheet">
+      <aside class="rail" aria-label="SED">
+        <a class="wordmark" href={import.meta.env.BASE_URL} aria-label="SED — Inicio"><img class="brand-symbol" src={`${import.meta.env.BASE_URL}/images/sed-symbol.png`} alt="" width="1174" height="1164" /><strong>SED<span>®</span></strong></a>
+        <p class="vertical">VISIÓN INDUSTRIAL</p>
+        <a class="rail-arrow" href="#proceso" aria-label="Explorar nuestro proceso"><svg viewBox="0 0 80 64" fill="none" aria-hidden="true"><path d="M4 56H36L70 12M38 12H70V44" stroke="currentColor" stroke-width="8" /></svg></a>
+      </aside>
+      <main id="contenido">
+        <header class="masthead"><span>SED / ESTUDIO INDUSTRIAL</span><span>DISEÑO + TECNOLOGÍA</span><span>VOL. 001 — 2026</span></header>
+        <div class="columns">
+          <section class="editorial" aria-labelledby="headline">
+            <div class="intro">
+              <div class="eyebrow mobile-only">UNA NUEVA PERSPECTIVA</div>
+              <h1 id="headline">El futuro<span class="registered">®</span><br />toma forma.</h1>
+              <p class="intro-copy">Una nueva perspectiva industrial. Ideas que conectan diseño y tecnología, donde cada detalle tiene un propósito. De la primera línea a lo que viene después.</p>
+            </div>
+            <div class="features">
+              <article><span class="eyebrow">PENSAR EN POSIBILIDADES</span><h2>Diseño</h2><p>Explorar nuevas formas de resolver. Transformar una idea en algo tangible.</p></article>
+              <article><span class="eyebrow">DAR EL SIGUIENTE PASO</span><h2>Desarrollo</h2><p>Conectar cada pieza del proceso. Hacer que la forma y la función avancen juntas.</p></article>
+            </div>
+            <section class="specs" id="proceso" aria-label="Nuestro proceso">
+              <table><thead><tr><th scope="col">FASE</th><th scope="col">PROCESO</th><th scope="col">ENFOQUE</th></tr></thead><tbody>{specs.map(([number, title, detail]) => <tr><td>{number}</td><th scope="row">{title}</th><td>{detail}</td></tr>)}</tbody></table>
+              <div class="table-footer"><span><i></i> IDEAS EN MOVIMIENTO</span><span>SED © {new Date().getFullYear()}</span></div>
+            </section>
+          </section>
+          <section class="gallery" aria-label="Galería de estudios industriales" aria-roledescription="carrusel">
+            <div class="gallery-track" tabindex="0" aria-label="Láminas: usa las flechas del teclado o desliza para navegar">
+              {[0, 1, 2, 3].map((index) => (
+          <article class="technical gallery-slide" role="group" aria-roledescription="lámina" aria-label={`${index + 1} de 4`}>
+            <div class="diagram-heading"><h2 id={`technical-heading-${index}`}>Precisión en cada pieza.<br />Visión en el conjunto.</h2><span class="eyebrow">SISTEMAS QUE CONECTAN<br />IDEAS, MOVIMIENTO<br />Y POSIBILIDADES.</span></div>
+            <figure class="robot-figure"><img src={`${import.meta.env.BASE_URL}/images/industrial-arm.png`} width="1024" height="1536" alt="Ilustración técnica de un brazo robótico industrial con engranajes expuestos y una unidad de control" fetchpriority={index === 0 ? "high" : "auto"} draggable="false" /></figure>
+            <div class="callout wrist"><span>01 / ARTICULACIÓN</span><p>El detalle que permite<br />cada movimiento.</p><i></i></div>
+            <div class="callout arm"><span>02 / ESTRUCTURA</span><p>Forma, equilibrio<br />y conexión.</p><i></i></div>
+            <div class="callout drive"><span>03 / TRANSMISIÓN</span><p>Una idea activa<br />la siguiente.</p><i></i></div>
+            <div class="callout control"><span>04 / CONTROL</span><p>Cada parte de un<br />mismo sistema.</p><i></i></div>
+            <div class="diagram-bottom"><span class="eyebrow">FIG. {String(index + 1).padStart(2, '0')}<br /><span class="muted">ESTUDIO CONCEPTUAL</span></span><p>Todo empieza<br />con una idea.</p></div>
+          </article>
+              ))}
+            </div>
+            <nav class="gallery-nav" aria-label="Controles de la galería">
+              <span class="gallery-count" aria-live="polite" aria-atomic="true">01 / 04</span>
+              <div class="gallery-dots">{[0, 1, 2, 3].map((index) => <button class="gallery-dot" type="button" data-slide={index} aria-label={`Ver lámina ${index + 1}`} aria-current={index === 0 ? 'true' : undefined}><span /></button>)}</div>
+              <div class="gallery-arrows"><button type="button" class="gallery-prev" aria-label="Lámina anterior" disabled>←</button><button type="button" class="gallery-next" aria-label="Lámina siguiente">→</button></div>
+            </nav>
+          </section>
+        </div>
+      </main>
+    </div>
+  </body>
 </html>
+<style>
+  :global(*){box-sizing:border-box} :global(html){scroll-behavior:smooth} :global(body){margin:0;background:#f6f6f2;color:#2d2dc9;font-family:Inter,Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased} :global(::selection){background:#2d2dc9;color:#2d2dc9} :global(a){color:inherit} :global(a:focus-visible){outline:2px solid currentColor;outline-offset:6px} .skip{position:fixed;left:150px;top:-100px;z-index:5;padding:12px;background:#2d2dc9}.skip:focus{top:15px}
+  .sheet{display:grid;grid-template-columns:10.4% 1fr;min-height:100svh;max-width:1920px;margin:auto;border-right:1px solid #8b8c85}.rail{background:#ffffff;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:22px 13px 24px;position:relative;border-right:1px solid #73776b}.rail:after{display:none;content:'';position:absolute;inset:0;opacity:.1;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' opacity='.55' filter='url(%23n)'/%3E%3C/svg%3E")}.wordmark{text-decoration:none;font-size:clamp(28px,3.5vw,58px);font-weight:800;letter-spacing:-.09em;line-height:1;color:#2d2dc9;position:relative}.wordmark span{font-size:10px;letter-spacing:0;position:absolute;right:-10px;top:0}.vertical{writing-mode:vertical-rl;transform:rotate(180deg);font-size:clamp(23px,3.05vw,49px);font-weight:600;letter-spacing:-.065em;line-height:1;margin:38px 0;color:#2d2dc9;white-space:nowrap}.rail-arrow{width:80%;max-width:82px;display:block;transition:transform .2s;color:#2d2dc9}.rail-arrow:hover{transform:translate(3px,-3px)}main{min-width:0}.masthead{height:58px;display:grid;grid-template-columns:44.2% 1fr auto;align-items:center;border-bottom:1px solid #8b8c85;font:10px 'IBM Plex Mono',monospace;letter-spacing:.07em}.masthead span{padding:0 27px}.masthead span:first-child{height:100%;display:flex;align-items:center;border-right:1px solid #8b8c85}.columns{display:grid;grid-template-columns:44.2% 55.8%;min-height:calc(100svh - 58px)}.editorial{display:flex;flex-direction:column;border-right:1px solid #8b8c85}.intro{padding:32px 27px 26px;flex:1}h1{font-size:clamp(48px,5.45vw,94px);font-weight:600;letter-spacing:-.078em;line-height:.98;margin:0 0 29px}.registered{font-size:.47em;vertical-align:top;display:inline-block;float:right;line-height:1.6;letter-spacing:-.06em}.intro-copy,p{font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:1.65;margin:0}.intro-copy{max-width:50ch}.features{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #8b8c85;border-bottom:1px solid #8b8c85}.features article{padding:28px 27px 29px}.features article+article{border-left:1px solid #8b8c85}.eyebrow{font:10px/1.4 'IBM Plex Mono',monospace;letter-spacing:.075em}.features h2{font-size:clamp(27px,3.1vw,53px);font-weight:500;letter-spacing:-.07em;margin:10px 0 8px;line-height:1.1}.features p{font-size:10px}.specs{padding:26px 27px 20px;scroll-margin-top:20px}table{border-collapse:collapse;width:100%;font:10px/1.4 'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.025em;text-align:left}thead{background:#2d2dc9;color:#f7f7f2}th{font-weight:400}td,th{padding:7px 0;border-bottom:1px solid #8b8c85}thead th{padding:7px 10px}thead th:first-child{width:14%}tbody th{width:33%}td:last-child{font-size:9px}.table-footer{display:flex;justify-content:space-between;gap:12px;margin-top:21px;font:8px 'IBM Plex Mono',monospace;letter-spacing:.05em}.table-footer i{display:inline-block;width:5px;height:5px;background:#2d2dc9;border-radius:50%;margin-right:6px}.technical{position:relative;min-height:650px;overflow:hidden}.diagram-heading{display:flex;justify-content:space-between;gap:20px;position:relative;z-index:2;margin:31px 27px 0}.diagram-heading h2{font-size:clamp(22px,2.15vw,37px);font-weight:500;letter-spacing:-.055em;line-height:1.04;margin:0}.diagram-heading>.eyebrow{font-size:10px}.robot-figure{position:absolute;inset:100px 10% 38px 14%;margin:0;display:flex;justify-content:center;align-items:center;mix-blend-mode:multiply}.robot-figure img{height:100%;width:100%;object-fit:contain;opacity:.86}.callout{position:absolute;z-index:2;width:110px;font-family:'IBM Plex Mono',monospace}.callout>span{font-size:9px;letter-spacing:.05em}.callout p{font-size:7px;line-height:1.5;color:#2d2dc9;margin-top:5px}.callout i{position:absolute;display:block;background:#2d2dc9;height:1px;width:32px;top:9px}.callout i:after{content:'';position:absolute;width:4px;height:4px;border-radius:50%;background:#2d2dc9;right:0;top:-1.5px}.wrist{left:27px;top:151px}.wrist i{left:100px}.arm{right:22px;top:180px}.arm i,.control i{right:118px}.arm i:after,.control i:after{right:auto;left:0}.drive{left:27px;top:52%}.drive i{left:105px;width:45px}.control{right:22px;top:57%}.diagram-bottom{position:absolute;left:27px;right:27px;bottom:22px;display:flex;justify-content:space-between;align-items:flex-end}.diagram-bottom p{font-family:Inter,sans-serif;font-size:clamp(24px,2.4vw,40px);line-height:1;letter-spacing:-.06em}.muted{font-size:7px;color:#2d2dc9}.mobile-only{display:none}
+  @media(min-width:1500px){.intro{padding-top:48px}.intro-copy{font-size:13px}.features p{font-size:12px}.features article{padding-top:38px;padding-bottom:38px}.specs{padding-top:32px}td,th{padding-top:10px;padding-bottom:10px}.technical{min-height:700px}.callout>span{font-size:11px}.callout p{font-size:9px}.callout{width:130px}.arm i,.control i{right:138px}}
+  @media(max-width:1000px){.sheet{grid-template-columns:80px 1fr}.masthead{grid-template-columns:1fr auto}.masthead span:first-child{border:0}.masthead span:nth-child(2){display:none}.columns{grid-template-columns:1fr}.editorial{border-right:0;border-bottom:1px solid #8b8c85}.intro{padding:36px 30px}h1{font-size:clamp(64px,10vw,100px);max-width:670px}.registered{float:none;margin-left:30px}.intro-copy{max-width:68ch}.features h2{font-size:44px}.features article,.specs{padding-left:30px;padding-right:30px}.vertical{font-size:30px;position:sticky;top:80px;margin:40px 0}.rail{justify-content:flex-start;gap:40px}.rail-arrow{margin-top:auto}.technical{min-height:760px}.diagram-heading h2{font-size:32px}.robot-figure{inset:110px 18% 40px}.callout{width:125px}.diagram-bottom p{font-size:34px}.arm i,.control i{right:125px}}
+  @media(max-width:560px){.sheet{display:block;border:0}.rail{height:72px;padding:15px 20px;flex-direction:row;gap:15px;border-right:0;border-bottom:1px solid #8b8c85;justify-content:space-between}.wordmark{font-size:36px}.vertical{writing-mode:initial;transform:none;position:static;font-size:12px;letter-spacing:-.03em;margin:0;white-space:normal;max-width:125px}.rail-arrow{width:36px;margin:0}.masthead{height:43px;font-size:8px}.masthead span{padding:0 20px}.intro{padding:29px 20px}.mobile-only{display:block;margin-bottom:22px;font-size:8px}h1{font-size:clamp(52px,14.5vw,81px);margin-bottom:23px}.registered{margin-left:15px}.intro-copy{font-size:10px}.features article{padding:23px 20px}.features h2{font-size:clamp(26px,7.4vw,40px)}.features .eyebrow{font-size:7px}.features p{font-size:9px}.specs{padding:24px 20px}table{font-size:9px}td:last-child{font-size:8px}.technical{min-height:680px}.diagram-heading{margin:26px 20px}.diagram-heading h2{font-size:25px}.diagram-heading>.eyebrow{font-size:7px;max-width:105px}.robot-figure{inset:125px 9% 85px}.callout{width:85px}.callout>span{font-size:7px}.callout p{font-size:6px}.wrist{left:20px;top:110px}.wrist i{left:88px;width:22px}.arm{right:12px;top:210px}.drive{left:20px;top:50%}.control{right:12px;top:64%}.arm i,.control i{right:87px;width:15px}.drive i{left:87px;width:18px}.diagram-bottom{left:20px;right:20px;bottom:25px}.diagram-bottom p{font-size:28px}}
+  @media(prefers-reduced-motion:reduce){:global(html){scroll-behavior:auto}.rail-arrow{transition:none}}
+  /* Brand color sampled directly from the supplied SED artwork. */
+  :global(:root){--brand:#2d2dc9;--paper:#f6f6f2}
+  .sheet{height:100dvh;min-height:0}
+  .rail{min-height:0;padding:16px 12px;gap:14px;overflow:hidden}
+  .wordmark{display:flex;flex-direction:column;align-items:center;gap:9px;background:white;padding:8px 10px 12px;width:100%;max-width:116px;flex-shrink:0}
+  .wordmark strong{position:relative;font:inherit}
+  .brand-symbol{width:100%;height:auto;display:block;max-height:100px;object-fit:contain}
+  .vertical{background:#ffffff;padding:12px 7px;margin:0;font-size:clamp(21px,4.8dvh,43px)}
+  .rail-arrow{background:#ffffff;padding:7px;flex-shrink:0;max-height:70px}
+  .rail-arrow svg{display:block;width:100%;height:100%}
+  thead{background:#e7e7f3;color:var(--brand)}
+  .skip{background:white;color:var(--brand)}
+  :global(::selection){background:#dadaff;color:var(--brand)}
+  @media(min-width:1001px){
+    main{height:100dvh;display:grid;grid-template-rows:clamp(38px,7dvh,58px) minmax(0,1fr)}
+    .masthead{height:100%}
+    .columns{height:100%;min-height:0}
+    .editorial{min-height:0;display:grid;grid-template-rows:40% 26% 34%}
+    .intro{padding:clamp(14px,3.6dvh,36px) 27px 12px;min-height:0}
+    h1{font-size:clamp(38px,min(5.45vw,9.5dvh),94px);margin-bottom:clamp(12px,3dvh,29px)}
+    .intro-copy{font-size:clamp(9px,1.45dvh,13px);line-height:1.6;max-width:60ch}
+    .features article{padding:clamp(12px,3.2dvh,30px) 27px 12px}
+    .features h2{font-size:clamp(26px,min(3.1vw,5.5dvh),53px);margin:8px 0}
+    .features p{font-size:clamp(9px,1.4dvh,12px)}
+    .eyebrow{font-size:clamp(8px,1.35dvh,10px)}
+    .specs{padding:clamp(12px,2.8dvh,26px) 27px 10px;min-height:0}
+    td,th{padding:clamp(2px,.55dvh,7px) 0}
+    thead th{padding:clamp(4px,.9dvh,8px) 10px}
+    .table-footer{margin-top:clamp(6px,1.2dvh,16px)}
+    .technical{min-height:0;height:100%}
+    .diagram-heading{margin-top:clamp(18px,3.8dvh,31px)}
+    .diagram-heading h2{font-size:clamp(20px,min(2.15vw,4dvh),37px)}
+    .robot-figure{inset:13% 12% 8% 14%}
+    .wrist{top:22%}.arm{top:24%}
+    .diagram-bottom{bottom:18px}
+    .diagram-bottom p{font-size:clamp(22px,min(2.4vw,4.4dvh),40px)}
+  }
+  @media(max-width:1000px){
+    main{height:100dvh;overflow-y:auto;min-height:0}
+    .vertical{position:static;font-size:26px}
+    .wordmark{font-size:32px;padding:6px 5px 9px}
+    .wordmark span{right:-6px;font-size:7px}
+    .rail{gap:20px;justify-content:space-between}
+    .rail-arrow{margin-top:0}
+  }
+  @media(max-width:560px){
+    .sheet{display:grid;grid-template-rows:106px minmax(0,1fr)}
+    .rail{height:106px;padding:8px 20px;overflow:visible}
+    main{height:100%;min-height:0}
+    .wordmark{width:62px;font-size:24px;gap:3px;padding:4px 8px 6px}
+    .brand-symbol{max-height:46px}
+    .vertical{font-size:12px;padding:8px 10px;max-width:150px}
+    .rail-arrow{width:40px;padding:5px}
+  }
+</style>
+
+<style>
+  .gallery{min-width:0;min-height:0;display:grid;grid-template-rows:minmax(0,1fr) 53px;overflow:hidden}
+  .gallery-track{display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain;min-height:0;outline-offset:-3px}
+  .gallery-track::-webkit-scrollbar{display:none}
+  .gallery-slide{flex:0 0 100%;width:100%;height:100%;min-height:0;scroll-snap-align:start;scroll-snap-stop:always}
+  .gallery-nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 27px;border-top:1px solid #8b8c85;color:var(--brand);background:var(--paper)}
+  .gallery-count{font:10px 'IBM Plex Mono',monospace;letter-spacing:.07em;min-width:65px}
+  .gallery-dots,.gallery-arrows{display:flex;align-items:center;gap:5px}
+  .gallery-nav button{color:var(--brand);background:transparent;border:0;cursor:pointer;display:grid;place-items:center;min-width:40px;min-height:40px;padding:0}
+  .gallery-dot span{display:block;width:6px;height:6px;border:1px solid currentColor;border-radius:50%;transition:background .15s,transform .15s}
+  .gallery-dot[aria-current="true"] span{background:currentColor;transform:scale(1.3)}
+  .gallery-arrows{gap:8px}.gallery-arrows button{font:28px/1 Inter,sans-serif}
+  .gallery-nav button:hover:not(:disabled){background:#e7e7f3}
+  .gallery-nav button:focus-visible,.gallery-track:focus-visible{outline:2px solid var(--brand);outline-offset:-3px}
+  .gallery-nav button:disabled{opacity:.25;cursor:default}
+  @media(max-width:1000px){.gallery{height:760px}.gallery .technical{min-height:0}}
+  @media(max-width:560px){.gallery{height:680px}.gallery-nav{padding:0 20px}.gallery-dots{gap:0}.gallery-dot{min-width:30px!important}}
+  @media(prefers-reduced-motion:reduce){.gallery-dot span{transition:none}}
+</style>
+<script>
+  const gallery = document.querySelector<HTMLElement>('.gallery');
+  if (gallery) {
+    const track = gallery.querySelector<HTMLElement>('.gallery-track')!;
+    const slides = Array.from(track.children) as HTMLElement[];
+    const prev = gallery.querySelector<HTMLButtonElement>('.gallery-prev')!;
+    const next = gallery.querySelector<HTMLButtonElement>('.gallery-next')!;
+    const dots = Array.from(gallery.querySelectorAll<HTMLButtonElement>('.gallery-dot'));
+    const counter = gallery.querySelector<HTMLElement>('.gallery-count')!;
+    let active = 0;
+    let target = 0;
+    let navigating = false;
+    const update = () => {
+      const position = Math.round(track.scrollLeft / track.clientWidth);
+      active = Math.max(0, Math.min(slides.length - 1, position));
+      counter.textContent = String(active + 1).padStart(2, '0') + ' / 04';
+      prev.disabled = active === 0;
+      next.disabled = active === slides.length - 1;
+      dots.forEach((dot, index) => index === active ? dot.setAttribute('aria-current', 'true') : dot.removeAttribute('aria-current'));
+    };
+    const go = (index: number) => {
+      target = Math.max(0, Math.min(slides.length - 1, index));
+      navigating = true;
+      track.scrollTo({left: target * track.clientWidth, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
+    };
+    prev.addEventListener('click', () => go((navigating ? target : active) - 1));
+    next.addEventListener('click', () => go((navigating ? target : active) + 1));
+    dots.forEach((dot, index) => dot.addEventListener('click', () => go(index)));
+    track.addEventListener('scroll', update, {passive: true});
+    track.addEventListener('scrollend', () => {navigating = false; update();});
+    track.addEventListener('pointerdown', () => {navigating = false;});
+    track.addEventListener('wheel', () => {navigating = false;}, {passive:true});
+    track.addEventListener('keydown', (event) => {
+      if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+      event.preventDefault();
+      const current = navigating ? target : active;
+      go(event.key === 'Home' ? 0 : event.key === 'End' ? slides.length - 1 : current + (event.key === 'ArrowRight' ? 1 : -1));
+    });
+    new ResizeObserver(() => {track.scrollTo({left:active * track.clientWidth,behavior:'instant'}); navigating=false;}).observe(track);
+    update();
+  }
+</script>
