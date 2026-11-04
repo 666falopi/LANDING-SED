@@ -23,6 +23,7 @@ const specs = [
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="SED. Diseño, tecnología y una nueva perspectiva industrial." />
     <title>SED — Una nueva perspectiva industrial</title>
+    <link rel="icon" type="image/png" href={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/images/sed-symbol.png`} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -75,12 +76,6 @@ const specs = [
             {section.id === 'impresion-3d' && index === 0 ? (
             <div class="video-figure"><iframe src="https://www.youtube-nocookie.com/embed/Ep_bSdvJXDo" title="Video de Impresión 3D" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><a href="https://www.youtube.com/watch?v=Ep_bSdvJXDo" target="_blank" rel="noopener noreferrer">Ver en YouTube ↗</a></div>
             ) : <figure class="robot-figure"><img src={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/images/galerias/${section.id}/${filename}`} width={section.id === 'escaner-laser' ? 920 : 1024} height={section.id === 'escaner-laser' ? 699 : 1536} alt={`${section.name}: imagen ${index + 1} de la galería`} fetchpriority={index === 0 ? "high" : "auto"} draggable="false" /></figure>}
-            {section.id === 'impresion-3d' && index !== 0 && (<>
-            <div class="callout wrist"><span>01 / ARTICULACIÓN</span><p>El detalle que permite<br />cada movimiento.</p><i></i></div>
-            <div class="callout arm"><span>02 / ESTRUCTURA</span><p>Forma, equilibrio<br />y conexión.</p><i></i></div>
-            <div class="callout drive"><span>03 / TRANSMISIÓN</span><p>Una idea activa<br />la siguiente.</p><i></i></div>
-            <div class="callout control"><span>04 / CONTROL</span><p>Cada parte de un<br />mismo sistema.</p><i></i></div>
-            </>)}
             <div class="diagram-bottom"><span class="eyebrow">FIG. {String(index + 1).padStart(2, '0')}<br /><span class="muted">{section.name.toUpperCase()}</span></span><p>Todo empieza<br />con una idea.</p></div>
           </article>
               ))}
