@@ -1,2 +1,7 @@
 import { defineConfig } from 'astro/config';
-export default defineConfig({ site: 'https://666falopi.github.io', base: '/LANDING-SED', output: 'static' });
+const githubPages = process.env.GITHUB_PAGES === 'true';
+export default defineConfig({
+  site: githubPages ? 'https://666falopi.github.io' : 'https://santiagoestudio.com',
+  base: githubPages ? '/LANDING-SED' : '/',
+  output: 'static',
+});
