@@ -6,7 +6,7 @@ const sections = [
   { id: 'diseno-industrial', name: 'Diseño Industrial', lines: ['Diseño', 'Industrial'] },
 ];
 const scannerImages = ["0001.png","0000.png","0002.png","0003.png","0004.png","0005.png","0006.png","0007.png","0008.png","0009.png","0010.png","00011.png","0012.png"];
-const galleryImages = (id: string) => id === 'escaner-laser' ? scannerImages : ['01.png', '02.png', '03.png', '04.png'];
+const galleryImages = (id: string) => id === 'escaner-laser' ? scannerImages : id === 'productos-especiales' ? ['difrac2.png', 'EOLIAN1.png', 'EOLIAN2.png', 'Saladora01.png'] : ['01.png', '02.png', '03.png', '04.png'];
 const specs = [
   ['01', 'Concepto', 'De la idea al sistema'],
   ['02', 'Diseño', 'Forma y función'],
@@ -32,7 +32,7 @@ const specs = [
     <a class="skip" href="#contenido">Saltar al contenido</a>
     <div class="sheet">
       <main id="contenido">
-        <header class="masthead"><div class="header-navigation"><a class="header-brand" href={import.meta.env.BASE_URL} aria-label="SED — Inicio"><img src={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/images/sed-symbol.png`} width="1174" height="1164" alt="" /><strong>SED</strong></a><div class="section-picker"><select id="section-select" aria-label="Seleccionar sección" aria-controls="section-impresion-3d section-escaner-laser section-productos-especiales section-diseno-industrial">{sections.map((section) => <option value={section.id}>{section.name}</option>)}</select><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4" /></svg></div></div><a class="header-email" href="mailto:santiago.estudiodiseno@gmail.com">Santiago Estudio Diseno | Santiago.EstudioDiseno@gmail.com</a></header>
+        <header class="masthead"><div class="header-navigation"><a class="header-brand" href={import.meta.env.BASE_URL} aria-label="SED — Inicio"><img src={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/images/sed-symbol.png`} width="1174" height="1164" alt="" /><strong>SED</strong></a><div class="section-picker"><select id="section-select" aria-label="Nuestros Servicios" aria-controls="section-impresion-3d section-escaner-laser section-productos-especiales section-diseno-industrial"><option value="" disabled selected>Nuestros Servicios</option>{sections.map((section) => <option value={section.id}>{section.name}</option>)}</select><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4" /></svg></div></div><a class="header-email" href="mailto:santiago.estudiodiseno@gmail.com">Santiago Estudio Diseno | Santiago.EstudioDiseno@gmail.com</a></header>
         {sections.map((section, sectionIndex) => (
         <div class="columns service-section" id={`section-${section.id}`} data-section={section.id} role="region" aria-label={section.name} hidden={sectionIndex !== 0}>
           <section class="editorial" aria-labelledby={`headline-${section.id}`}>
@@ -198,10 +198,9 @@ const specs = [
       dots.forEach((dot, index) => index === active ? dot.setAttribute('aria-current', 'true') : dot.removeAttribute('aria-current'));
     };
     const go = (index: number) => {
-      const wraps = index < 0 || index >= slides.length;
       target = ((index % slides.length) + slides.length) % slides.length;
       navigating = true;
-      track.scrollTo({left: target * track.clientWidth, behavior: wraps || matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
+      track.scrollTo({left: target * track.clientWidth, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
     };
     prev.addEventListener('click', () => go((navigating ? target : active) - 1));
     next.addEventListener('click', () => go((navigating ? target : active) + 1));
@@ -225,7 +224,7 @@ const specs = [
   const selectSection = (id: string) => {
     if (!panels.some(panel => panel.dataset.section === id)) return;
     panels.forEach(panel => {panel.hidden = panel.dataset.section !== id;});
-    selector.value = id;
+    selector.value = ''; 
   };
   selector.addEventListener('change', () => {
     selectSection(selector.value);
@@ -376,4 +375,45 @@ const specs = [
   .masthead .header-email{font-family:Inter,Arial,Helvetica,sans-serif;font-size:clamp(14px,1.05vw,20px);font-weight:700;line-height:1.3;letter-spacing:-.025em}
   @media(max-width:1000px) and (min-width:561px){.masthead .header-email{max-width:43vw;text-align:right}}
   @media(max-width:560px){.masthead .header-email{font-size:14px;text-align:right}}
+</style>
+<style>
+[data-section="productos-especiales"] .robot-figure{mix-blend-mode:normal;inset:18% 27px 16%}
+[data-section="productos-especiales"] .robot-figure img{opacity:1;object-fit:contain}
+</style>
+<style>
+  .gallery-track{min-width:0;width:100%;max-width:100%}
+  .gallery-slide{min-width:0;max-width:100%}
+  .gallery-nav{min-width:0;max-width:100%}
+  .gallery-dots{min-width:0;overflow-x:auto;flex:1}
+  .gallery-dot{flex-shrink:0}
+  .gallery-arrows{flex-shrink:0}
+  @media(max-width:560px){
+    .columns,.editorial,.gallery{min-width:0;width:100%;max-width:100%}
+    .gallery{grid-template-columns:minmax(0,1fr)}
+    .gallery .robot-figure{left:20px;right:20px;min-width:0;max-width:calc(100% - 40px)}
+    .gallery .robot-figure img{display:block;min-width:0;max-width:100%;max-height:100%;object-fit:contain}
+    .gallery-nav{gap:8px;padding:0 16px}
+    .gallery-count{min-width:55px}
+    .gallery-arrows{gap:0}
+    .gallery-arrows button{min-width:32px}
+    .diagram-bottom p{font-size:clamp(22px,6vw,28px)}
+  }
+</style>
+
+<style>
+.header-navigation .section-picker{height:calc(100% - 14px);margin-right:12px;border:1px solid var(--brand)}
+.header-navigation .section-picker select{font-family:Inter,Arial,sans-serif;font-size:clamp(14px,1.1vw,20px);font-weight:700;text-transform:none;padding-left:14px}
+@media(max-width:560px){
+.header-navigation .section-picker{height:44px;margin-right:12px}
+.header-navigation .section-picker select{font-size:14px;padding-left:10px}
+.service-section{display:flex;flex-direction:column}
+.service-section .editorial,.service-section .features{display:contents}
+.service-section .intro{order:0;border-bottom:1px solid #8b8c85}
+.service-section .gallery{order:1}
+.service-section .features article{order:2;border-left:0;border-top:1px solid #8b8c85;padding:24px 20px}
+.service-section .specs{order:3}
+.service-section .features .printing-service{order:4;overflow:visible}
+.service-section .features .hardware{display:flex;min-height:320px}
+.service-section .hardware-image{flex:none}
+}
 </style>
